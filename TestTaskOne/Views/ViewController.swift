@@ -8,6 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+
     
 
     let myNavigationBar: UINavigationBar = {
@@ -23,8 +24,15 @@ class ViewController: UIViewController {
         return tableView
     }()
     
+    let data = ProfileDataManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myTableView.dataSource = self
+        myTableView.delegate = self
+        
+        myTableView.register(MyTableViewCell.self, forCellReuseIdentifier: "idCell")
         
         setNavigationBar()
         setTableView()
@@ -58,5 +66,28 @@ class ViewController: UIViewController {
         print("bingo")
     }
     
+}
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = myTableView.dequeueReusableCell(withIdentifier: "idCell") as! MyTableViewCell
+        
+        cell.configure()
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 

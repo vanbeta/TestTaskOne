@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7DA3D66A2923E97000589459 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3D6692923E97000589459 /* MyTableViewCell.swift */; };
 		7DF3BE9529227F3C00D19178 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF3BE9429227F3C00D19178 /* AppDelegate.swift */; };
 		7DF3BE9729227F3C00D19178 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF3BE9629227F3C00D19178 /* SceneDelegate.swift */; };
 		7DF3BE9929227F3C00D19178 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF3BE9829227F3C00D19178 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7DA3D6692923E97000589459 /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		7DF3BE9129227F3C00D19178 /* TestTaskOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestTaskOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DF3BE9429227F3C00D19178 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DF3BE9629227F3C00D19178 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7DA3D6682923E95400589459 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7DA3D6692923E97000589459 /* MyTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		7DF3BE8829227F3C00D19178 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +105,7 @@
 		7DF3BEAE2922B17A00D19178 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7DA3D6682923E95400589459 /* Cells */,
 				7DF3BE9829227F3C00D19178 /* ViewController.swift */,
 			);
 			path = Views;
@@ -177,6 +188,7 @@
 				7DF3BE9529227F3C00D19178 /* AppDelegate.swift in Sources */,
 				7DF3BEB02922B21100D19178 /* Presenter.swift in Sources */,
 				7DF3BE9729227F3C00D19178 /* SceneDelegate.swift in Sources */,
+				7DA3D66A2923E97000589459 /* MyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
