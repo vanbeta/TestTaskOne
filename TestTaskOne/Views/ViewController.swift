@@ -9,8 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    
-
     let myNavigationBar: UINavigationBar = {
         let navBar = UINavigationBar(frame: .zero)
         navBar.translatesAutoresizingMaskIntoConstraints = false
@@ -82,7 +80,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = myTableView.dequeueReusableCell(withIdentifier: "idCell") as! MyTableViewCell
         
-        cell.configure()
+        cell.configure(profile: data.data[indexPath.row])
         return cell
     }
     

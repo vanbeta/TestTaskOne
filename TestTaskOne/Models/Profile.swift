@@ -23,10 +23,9 @@ struct Profile { // плохое название
 
 class ProfileDataManager {
 
-    
     let data = [Profile(mainLabel: .firstName, datas: "Иван"),
                 Profile(mainLabel: .lastName, datas: "Иванов"),
-                Profile(mainLabel: .patronymic, datas: "Иваннович"),
+                Profile(mainLabel: .patronymic, datas: "Иванович"),
                 Profile(mainLabel: .date, datas: "66.66.6666"),
                 Profile(mainLabel: .sex, datas: "Мужской")]
 }
