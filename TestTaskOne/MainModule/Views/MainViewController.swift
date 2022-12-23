@@ -8,11 +8,6 @@
 import UIKit
 
 class MainViewController: UIViewController {
-//    let myNavigationBar: UINavigationBar = {
-//        let navBar = UINavigationBar(frame: .zero)
-//        navBar.translatesAutoresizingMaskIntoConstraints = false
-//        return navBar
-//    }()
 
     let myTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -20,33 +15,24 @@ class MainViewController: UIViewController {
         return tableView
     }()
     
-    var presenter: MainPresenterProtocol!
+    var presenter: MainPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         myTableView.dataSource = self
         myTableView.delegate = self
-        
         myTableView.register(MyTableViewCell.self, forCellReuseIdentifier: "idCell")
         
-//        setNavigationBar()
+        setingsNavigationBar()
         setTableView()
     }
     
-//    func setNavigationBar() {
-//        let navItem = UINavigationItem(title: "Просмотр")
-//        let doneItem = UIBarButtonItem(title: "Редактировать", style: .plain, target: nil, action: #selector(editBtn))
-//
-//        navItem.rightBarButtonItem = doneItem
-//
-//        myNavigationBar.setItems([navItem], animated: false)
-//
-//        self.view.addSubview(myNavigationBar)
-//
-//        myNavigationBar.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-//        myNavigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-//    }
+    func setingsNavigationBar() {
+        let btnEdit = UIBarButtonItem(title: "Редактировать", style: .plain, target: self, action: #selector(editBtn))
+        navigationItem.title = "Просмотр"
+        navigationItem.rightBarButtonItem = btnEdit
+    }
     
     func setTableView() {
         self.view.addSubview(myTableView)
@@ -59,6 +45,7 @@ class MainViewController: UIViewController {
     
     @objc
     func editBtn(){
+        print("bingo")
     }
 }
 

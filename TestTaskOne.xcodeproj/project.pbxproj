@@ -57,6 +57,29 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7DAFF9F72955DFB500581705 /* EditModule */ = {
+			isa = PBXGroup;
+			children = (
+				7DAFF9F92955DFE000581705 /* New Group1 */,
+				7DAFF9F82955DFDD00581705 /* New Group */,
+			);
+			path = EditModule;
+			sourceTree = "<group>";
+		};
+		7DAFF9F82955DFDD00581705 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		7DAFF9F92955DFE000581705 /* New Group1 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
 		7DB8ECDC2954BC4000EEB673 /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				7DB8ECE12954F56800EEB673 /* DataService.swift */,
+				7DAFF9F72955DFB500581705 /* EditModule */,
 				7DB8ECDC2954BC4000EEB673 /* MainModule */,
 				7DB8ECDD2954BCA100EEB673 /* ModuleBuilder.swift */,
 				7DF3BE9429227F3C00D19178 /* AppDelegate.swift */,

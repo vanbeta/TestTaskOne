@@ -19,7 +19,7 @@ protocol MainPresenterProtocol: AnyObject {
 
 class MainPresenter: MainPresenterProtocol {
     weak var view: MainViewProtocol?
-    weak var dataService: DataServiceProtocol?
+    var dataService: DataServiceProtocol?
     var profiles: [Profile]?
     
     required init(view: MainViewProtocol, dataService: DataServiceProtocol) {
