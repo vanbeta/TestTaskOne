@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    let myTableView: UITableView = {
+    let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -20,9 +20,9 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        myTableView.dataSource = self
-        myTableView.delegate = self
-        myTableView.register(MyTableViewCell.self, forCellReuseIdentifier: "idCell")
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "idCell")
         
         setingsNavigationBar()
         setTableView()
@@ -35,17 +35,18 @@ class MainViewController: UIViewController {
     }
     
     func setTableView() {
-        self.view.addSubview(myTableView)
+        self.view.addSubview(tableView)
 
-        myTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        myTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        myTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        myTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
     
     @objc
     func editBtn(){
-        print("bingo")
+        let editViewController = ModuleBuilder.createEdit()
+        navigationController?.pushViewController(editViewController, animated: true)
     }
 }
 
@@ -59,7 +60,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = myTableView.dequeueReusableCell(withIdentifier: "idCell") as! MyTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "idCell") as! MainTableViewCell
         
         cell.configure(profile: presenter?.profiles?[indexPath.row] ?? Profile(mainLabel: .firstName, datas: "Error"))
         return cell
@@ -72,6 +73,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension MainViewController: MainViewProtocol {
     func succes() {
-        myTableView.reloadData()
+        tableView.reloadData()
     }
 }

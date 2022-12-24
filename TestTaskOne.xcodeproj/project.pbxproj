@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7DA3D66A2923E97000589459 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3D6692923E97000589459 /* MyTableViewCell.swift */; };
+		7D1D95EB295744D400F7D6D0 /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D95EA295744D400F7D6D0 /* EditTableViewCell.swift */; };
+		7DA3D66A2923E97000589459 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3D6692923E97000589459 /* MainTableViewCell.swift */; };
+		7DAFF9FB2955E74F00581705 /* EditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFF9FA2955E74F00581705 /* EditPresenter.swift */; };
+		7DAFF9FD2955E75D00581705 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFF9FC2955E75D00581705 /* EditViewController.swift */; };
 		7DB8ECDE2954BCA100EEB673 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB8ECDD2954BCA100EEB673 /* ModuleBuilder.swift */; };
 		7DB8ECE02954E6B100EEB673 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB8ECDF2954E6B100EEB673 /* Main.storyboard */; };
 		7DB8ECE22954F56800EEB673 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB8ECE12954F56800EEB673 /* DataService.swift */; };
@@ -22,7 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7DA3D6692923E97000589459 /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
+		7D1D95EA295744D400F7D6D0 /* EditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewCell.swift; sourceTree = "<group>"; };
+		7DA3D6692923E97000589459 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		7DAFF9FA2955E74F00581705 /* EditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresenter.swift; sourceTree = "<group>"; };
+		7DAFF9FC2955E75D00581705 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		7DB8ECDD2954BCA100EEB673 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		7DB8ECDF2954E6B100EEB673 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7DB8ECE12954F56800EEB673 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -49,43 +55,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7DA3D6682923E95400589459 /* Cells */ = {
+		7D1D95E9295744B300F7D6D0 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				7DA3D6692923E97000589459 /* MyTableViewCell.swift */,
+				7D1D95EA295744D400F7D6D0 /* EditTableViewCell.swift */,
 			);
-			path = Cells;
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		7DA3D6682923E95400589459 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7DA3D6692923E97000589459 /* MainTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		7DAFF9F72955DFB500581705 /* EditModule */ = {
 			isa = PBXGroup;
 			children = (
-				7DAFF9F92955DFE000581705 /* New Group1 */,
-				7DAFF9F82955DFDD00581705 /* New Group */,
+				7DAFF9F92955DFE000581705 /* Presenter */,
+				7DAFF9F82955DFDD00581705 /* View */,
 			);
 			path = EditModule;
 			sourceTree = "<group>";
 		};
-		7DAFF9F82955DFDD00581705 /* New Group */ = {
+		7DAFF9F82955DFDD00581705 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7D1D95E9295744B300F7D6D0 /* Cell */,
+				7DAFF9FC2955E75D00581705 /* EditViewController.swift */,
 			);
-			path = "New Group";
+			path = View;
 			sourceTree = "<group>";
 		};
-		7DAFF9F92955DFE000581705 /* New Group1 */ = {
+		7DAFF9F92955DFE000581705 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				7DAFF9FA2955E74F00581705 /* EditPresenter.swift */,
 			);
-			path = "New Group1";
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		7DB8ECDC2954BC4000EEB673 /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
-				7DF3BEAC2922B16700D19178 /* Presenters */,
-				7DF3BEAE2922B17A00D19178 /* Views */,
-				7DF3BEAD2922B17000D19178 /* Models */,
+				7DF3BEAC2922B16700D19178 /* Presenter */,
+				7DF3BEAE2922B17A00D19178 /* View */,
+				7DF3BEAD2922B17000D19178 /* Model */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
@@ -124,29 +141,29 @@
 			path = TestTaskOne;
 			sourceTree = "<group>";
 		};
-		7DF3BEAC2922B16700D19178 /* Presenters */ = {
+		7DF3BEAC2922B16700D19178 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
 				7DF3BEAF2922B21100D19178 /* MainPresenter.swift */,
 			);
-			path = Presenters;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
-		7DF3BEAD2922B17000D19178 /* Models */ = {
+		7DF3BEAD2922B17000D19178 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				7DF3BEB12922B26000D19178 /* Profile.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		7DF3BEAE2922B17A00D19178 /* Views */ = {
+		7DF3BEAE2922B17A00D19178 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7DA3D6682923E95400589459 /* Cells */,
+				7DA3D6682923E95400589459 /* Cell */,
 				7DF3BE9829227F3C00D19178 /* MainViewController.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,11 +240,14 @@
 			files = (
 				7DF3BE9929227F3C00D19178 /* MainViewController.swift in Sources */,
 				7DF3BEB22922B26000D19178 /* Profile.swift in Sources */,
+				7DAFF9FB2955E74F00581705 /* EditPresenter.swift in Sources */,
 				7DF3BE9529227F3C00D19178 /* AppDelegate.swift in Sources */,
 				7DF3BEB02922B21100D19178 /* MainPresenter.swift in Sources */,
 				7DB8ECDE2954BCA100EEB673 /* ModuleBuilder.swift in Sources */,
+				7DAFF9FD2955E75D00581705 /* EditViewController.swift in Sources */,
 				7DF3BE9729227F3C00D19178 /* SceneDelegate.swift in Sources */,
-				7DA3D66A2923E97000589459 /* MyTableViewCell.swift in Sources */,
+				7DA3D66A2923E97000589459 /* MainTableViewCell.swift in Sources */,
+				7D1D95EB295744D400F7D6D0 /* EditTableViewCell.swift in Sources */,
 				7DB8ECE22954F56800EEB673 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

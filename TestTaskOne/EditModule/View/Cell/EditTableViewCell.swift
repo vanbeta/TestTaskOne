@@ -1,13 +1,13 @@
 //
-//  MyTableViewCell.swift
+//  EditTableViewCell.swift
 //  TestTaskOne
 //
-//  Created by Ivan Poderegin on 15.11.2022.
+//  Created by Ivan Poderegin on 24.12.2022.
 //
 
 import UIKit
 
-class MyTableViewCell: UITableViewCell {
+class EditTableViewCell: UITableViewCell {
         
     let nameLabel: UILabel = {
         let myNameLabel = UILabel()

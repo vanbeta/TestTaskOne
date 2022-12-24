@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MainViewProtocol: AnyObject {
     func succes()
@@ -14,7 +15,7 @@ protocol MainViewProtocol: AnyObject {
 protocol MainPresenterProtocol: AnyObject {
     init(view: MainViewProtocol, dataService: DataServiceProtocol)
     func getProfiles()
-    var profiles: [Profile]? { get set}
+    var profiles: [Profile]? { get set }
 }
 
 class MainPresenter: MainPresenterProtocol {
