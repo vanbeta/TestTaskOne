@@ -13,7 +13,6 @@ protocol Builder {
 }
 
 class ModuleBuilder: Builder {
-    
     static func createMain() -> UIViewController {
         let model = DataService()
         let view = MainViewController()

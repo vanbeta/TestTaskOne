@@ -8,7 +8,6 @@
 import UIKit
 
 class EditViewController: UIViewController {
-    
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -22,14 +21,14 @@ class EditViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(EditTableViewCell.self, forCellReuseIdentifier: "idCell")
+        tableView.register(EditTableViewCell.self, forCellReuseIdentifier: "idEditCell")
         
         setTableView()
     }
     
     func setTableView() {
         self.view.addSubview(tableView)
-
+        
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -43,13 +42,17 @@ extension EditViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "idCell") as! EditTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "idEditCell") as! EditTableViewCell
         
         cell.configure(profile: presenter?.profiles?[indexPath.row] ?? Profile(mainLabel: .firstName, datas: "Error"))
+        cell.textChanged {[weak tableView] (_) in
+                tableView?.beginUpdates()
+                tableView?.endUpdates()
+        }
         return cell
     }
     

@@ -17,7 +17,6 @@ protocol EditPresenterProtocol: AnyObject {
 }
 
 class EditPresenter: EditPresenterProtocol {
-    
     weak var view: EditViewProtocol?
     var data: DataServiceProtocol?
     var profiles: [Profile]?

@@ -8,19 +8,18 @@
 import UIKit
 
 class MainTableViewCell: UITableViewCell {
-        
     let nameLabel: UILabel = {
         let myNameLabel = UILabel()
         myNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return myNameLabel
     }()
     
-    let textField: UITextField = {
-        let myTextFiel = UITextField()
-        myTextFiel.translatesAutoresizingMaskIntoConstraints = false
-        myTextFiel.textAlignment = .right
-        myTextFiel.isEnabled = false
-        return myTextFiel
+    let dataLabel: UILabel = {
+        let myDataLabel = UILabel()
+        myDataLabel.translatesAutoresizingMaskIntoConstraints = false
+        myDataLabel.textAlignment = .right
+        myDataLabel.isEnabled = false
+        return myDataLabel
     }()
     
     let standartIndent: CGFloat = 10
@@ -30,7 +29,6 @@ class MainTableViewCell: UITableViewCell {
         
         setNameLabel()
         setTextField()
-        textField.placeholder = "Введите данные"
     }
     
     required init?(coder: NSCoder) {
@@ -49,33 +47,33 @@ class MainTableViewCell: UITableViewCell {
     }
     
     func setTextField() {
-        contentView.addSubview(textField)
+        contentView.addSubview(dataLabel)
         
-        textField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -standartIndent).isActive = true
+        dataLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -standartIndent).isActive = true
         
-        textField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        textField.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
+        dataLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        dataLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
                 
-        textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        dataLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
     
     func configure(profile: Profile) {
         switch profile.mainLabel {
         case .firstName:
             nameLabel.text = "Имя"
-            textField.text = profile.datas
+            dataLabel.text = profile.datas
         case .lastName:
             nameLabel.text = "Фамилия"
-            textField.text = profile.datas
+            dataLabel.text = profile.datas
         case .patronymic:
             nameLabel.text = "Отчество"
-            textField.text = profile.datas
+            dataLabel.text = profile.datas
         case .date:
             nameLabel.text = "Дата рождения"
-            textField.text = profile.datas
+            dataLabel.text = profile.datas
         case .sex:
             nameLabel.text = "Пол"
-            textField.text = profile.datas
+            dataLabel.text = profile.datas
         }
     }
 }
