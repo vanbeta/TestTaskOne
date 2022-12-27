@@ -13,7 +13,7 @@ class EditViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
+
     var presenter: EditPresenterProtocol!
     
     override func viewDidLoad() {
