@@ -40,7 +40,9 @@ class EditTableViewCell: UITableViewCell {
     }()
     
     let standartIndent: CGFloat = 10
-    var textChanged: ((String) -> Void)?
+    var textViewChanged: ((String) -> Void)?
+    var textFieldChanged: ((String) -> Void)?
+    var datePickerChanged: ((String) -> Void)?
     
     let pickerData = ["мужской", "женский", "не выбрано"]
 
@@ -48,15 +50,29 @@ class EditTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         textView.delegate = self
+        textField.delegate = self
 
         createNameLabel()
-//        textField.placeholder = "Введите данные"
+        textField.placeholder = "Введите данные"
+        datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
     }
-
+    
+    func datePickerChanged(action: @escaping (String) -> Void) {
+        self.datePickerChanged = action
+    }
+    
+    @objc
+    func dateChanged() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        let date = formatter.string(from: datePicker.date)
+        datePickerChanged?(date)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     func createNameLabel() {
         contentView.addSubview(nameLabel)
         nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: standartIndent).isActive = true
@@ -101,13 +117,23 @@ class EditTableViewCell: UITableViewCell {
     }
 }
 
+extension EditTableViewCell: UITextFieldDelegate {
+    func textFieldChanged(action: @escaping (String) -> Void) {
+        self.textFieldChanged = action
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textFieldChanged?(textField.text ?? "")
+    }
+}
+
 extension EditTableViewCell: UITextViewDelegate {
     func textChanged(action: @escaping (String) -> Void) {
-        self.textChanged = action
+        self.textViewChanged = action
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        textChanged?(textView.text)
+        textViewChanged?(textView.text)
     }
 }
 
@@ -135,16 +161,17 @@ extension EditTableViewCell: UIPickerViewDelegate, UIPickerViewDataSource {
         her.inputView = myPickerView
     }
 
+    // TODO: Убрать Бар и сделать по нажатию на категорию ( муж. женс )
     func dismissPickerView(her: UITextField) {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
-        let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.pressedDoneBtn))
+        let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneBtn))
         toolBar.setItems([button], animated: true)
         toolBar.isUserInteractionEnabled = true
         her.inputAccessoryView = toolBar
     }
 
-    @objc func pressedDoneBtn() {
+    @objc func doneBtn() {
         self.endEditing(true)
     }
 }

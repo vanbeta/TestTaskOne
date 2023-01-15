@@ -12,6 +12,8 @@ protocol DataServiceProtocol: AnyObject {
 }
 
 class DataService: DataServiceProtocol {
+    private let userDefaults = UserDefaults.standard
+
     let data = [Profile(mainLabel: .firstName, datas: "Иван"),
                 Profile(mainLabel: .lastName, datas: "Иванов"),
                 Profile(mainLabel: .patronymic, datas: "Иванович"),
@@ -21,4 +23,5 @@ class DataService: DataServiceProtocol {
     func getProfiles(compition: @escaping (Result<[Profile]?, Error>) -> ()) {
             compition(.success(data))
     }
+    
 }

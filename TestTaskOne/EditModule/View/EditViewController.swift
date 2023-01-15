@@ -23,7 +23,14 @@ class EditViewController: UIViewController {
         tableView.delegate = self
         tableView.register(EditTableViewCell.self, forCellReuseIdentifier: "idEditCell")
         
+        setingsNavigationBar()
         setTableView()
+    }
+    
+    func setingsNavigationBar() {
+        let btnEdit = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveBtn))
+        navigationItem.title = "Редактировать"
+        navigationItem.rightBarButtonItem = btnEdit
     }
     
     func setTableView() {
@@ -34,7 +41,14 @@ class EditViewController: UIViewController {
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
+    
+    @objc
+    func saveBtn(){
+        print("save")
+    }
 }
+// Вью не может напрямую писать данные в Дату она должна дергать Прецентор и он должен каждый раз
+// писатть в дату а когда нажмем сохранить он проверить дату??
 
 extension EditViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,11 +62,29 @@ extension EditViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "idEditCell") as! EditTableViewCell
         
-        cell.configure(profile: presenter?.profiles?[indexPath.row] ?? Profile(mainLabel: .firstName, datas: "Error"))
-        cell.textChanged {[weak tableView] (_) in
-                tableView?.beginUpdates()
-                tableView?.endUpdates()
+        let profile = presenter?.profiles?[indexPath.row]
+        
+        cell.configure(profile: profile ?? Profile(mainLabel: .firstName, datas: "Error"))
+        
+        cell.textFieldChanged { [weak self] (str) in
+            guard let profile = profile else { return }
+            print("her")
+            self?.presenter.updateData(data: Profile(mainLabel: profile.mainLabel, datas: str))
         }
+        
+        cell.textChanged {[weak tableView] (str) in
+            // подумать как это запоковать красиво + как то плохо что вью слушает вью (возможно написать протокл на ячейку)
+            tableView?.beginUpdates()
+            tableView?.endUpdates()
+            guard let profile = profile else { return }
+            self.presenter.updateData(data: Profile(mainLabel: profile.mainLabel, datas: str))
+        }
+        
+        cell.datePickerChanged { (str) in
+            guard let profile = profile else { return }
+            self.presenter.updateData(data: Profile(mainLabel: profile.mainLabel, datas: str))
+        }
+        
         return cell
     }
     
