@@ -9,6 +9,7 @@ import Foundation
 
 protocol EditViewProtocol: AnyObject {
     func succes()
+    func showAlert(with title: String, and message: String)
 }
 
 protocol EditPresenterProtocol: AnyObject {
@@ -52,6 +53,28 @@ class EditPresenter: EditPresenterProtocol {
     
     func saveBtnPressed() {
         guard let profiles = profiles else { return }
+        for i in profiles {
+            switch i.mainLabel {
+            case .firstName:
+                if i.datas.isEmpty {
+                    view?.showAlert(with: "Ошибка", and: "Возможно поле имя или фамилия не заполненны")
+                    return
+                }
+            case .lastName:
+                if i.datas.isEmpty {
+                    view?.showAlert(with: "Ошибка", and: "Возможно поле имя или фамилия не заполненны")
+                    return
+                }
+            case .sex:
+                if i.datas.isEmpty || i.datas == "не выбрано" {
+                    view?.showAlert(with: "Ошибка", and: "Возможно поле имя или фамилия или пол не заполненны")
+                    return
+                }
+            case .patronymic, .date: break
+            default:
+                return
+            }
+        }
         data?.saveProfiles(profiles: profiles)
     }
 }

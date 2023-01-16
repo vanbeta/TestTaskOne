@@ -36,7 +36,6 @@ class EditViewController: UIViewController {
     
     func setTableView() {
         self.view.addSubview(tableView)
-        
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -71,7 +70,6 @@ extension EditViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         cell.textChanged {[weak tableView] (str) in
-            // подумать как это запоковать красиво + как то плохо что вью слушает вью (возможно написать протокл на ячейку)
             tableView?.beginUpdates()
             tableView?.endUpdates()
             guard let profile = profile else { return }

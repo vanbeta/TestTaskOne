@@ -174,6 +174,7 @@ extension EditTableViewCell: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         textField.text = pickerData[row]
         self.endEditing(true)
+        textFieldDidChangeSelection(textField)
     }
     
     func createPickerView(textField: UITextField) {
