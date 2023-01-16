@@ -14,7 +14,8 @@ protocol EditViewProtocol: AnyObject {
 protocol EditPresenterProtocol: AnyObject {
     init(view: EditViewProtocol, dataService: DataServiceProtocol)
     var profiles: [Profile]? { get set }
-    func 	updateData(data: Profile)
+    func updateData(data: Profile)
+    func saveBtnPressed()
 }
 
 class EditPresenter: EditPresenterProtocol {
@@ -35,7 +36,7 @@ class EditPresenter: EditPresenterProtocol {
                 switch result {
                 case .success(let profiles):
                     self.profiles = profiles
-                    self.view?.succes()
+                    self.view?.succes()                    
                 case .failure(let error):
                     print(error)
                 }
@@ -47,9 +48,10 @@ class EditPresenter: EditPresenterProtocol {
         if let index = profiles?.firstIndex(where: ({$0.mainLabel == data.mainLabel})) {
             profiles![index].datas = data.datas
         }
-        
-        for i in profiles! {
-            print("name \(i.mainLabel) = \(i.datas)")
-        }
+    }
+    
+    func saveBtnPressed() {
+        guard let profiles = profiles else { return }
+        data?.saveProfiles(profiles: profiles)
     }
 }

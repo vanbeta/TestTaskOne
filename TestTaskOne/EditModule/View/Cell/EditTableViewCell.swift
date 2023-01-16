@@ -18,6 +18,7 @@ class EditTableViewCell: UITableViewCell {
         let myTextFiel = UITextField()
         myTextFiel.translatesAutoresizingMaskIntoConstraints = false
         myTextFiel.textAlignment = .right
+        myTextFiel.placeholder = "Введите данные"
         return myTextFiel
     }()
 
@@ -40,6 +41,7 @@ class EditTableViewCell: UITableViewCell {
     }()
     
     let standartIndent: CGFloat = 10
+    
     var textViewChanged: ((String) -> Void)?
     var textFieldChanged: ((String) -> Void)?
     var datePickerChanged: ((String) -> Void)?
@@ -53,7 +55,6 @@ class EditTableViewCell: UITableViewCell {
         textField.delegate = self
 
         createNameLabel()
-        textField.placeholder = "Введите данные"
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
     }
     
@@ -96,23 +97,28 @@ class EditTableViewCell: UITableViewCell {
         case .firstName:
             nameLabel.text = "Имя"
             createRightWidjet(widget: textField)
-            textField.text = profile.datas
+            textField.text = profile.datas == "Нет данных" ? nil : profile.datas
         case .lastName:
             nameLabel.text = "Фамилия"
             createRightWidjet(widget: textView)
-            textView.text = "Фамилия"
+            textView.text = profile.datas == "Нет данных" ? nil : profile.datas
         case .patronymic:
             nameLabel.text = "Отчество"
             createRightWidjet(widget: textField)
-            textField.text = profile.datas
+            textField.text = profile.datas == "Нет данных" ? nil : profile.datas
         case .date:
             nameLabel.text = "Дата рождения"
             createRightWidjet(widget: datePicker)
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd.MM.yyyy"
+            let date = formatter.date(from: profile.datas)
+            guard let date = date else { return }
+            self.datePicker.setDate(date, animated: false)
         case .sex:
             nameLabel.text = "Пол"
             createRightWidjet(widget: textField)
-            createPickerView(her: textField)
-            dismissPickerView(her: textField)
+            createPickerView(textField: textField)
+            textField.text = profile.datas
         }
     }
 }
@@ -122,7 +128,7 @@ extension EditTableViewCell: UITextFieldDelegate {
         self.textFieldChanged = action
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
         textFieldChanged?(textField.text ?? "")
     }
 }
@@ -134,6 +140,20 @@ extension EditTableViewCell: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         textViewChanged?(textView.text)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Введите данные"
+            textView.textColor = UIColor.lightGray
+        }
     }
 }
 
@@ -153,25 +173,12 @@ extension EditTableViewCell: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         textField.text = pickerData[row]
+        self.endEditing(true)
     }
     
-    func createPickerView(her: UITextField) {
+    func createPickerView(textField: UITextField) {
         let myPickerView = UIPickerView()
         myPickerView.delegate = self
-        her.inputView = myPickerView
-    }
-
-    // TODO: Убрать Бар и сделать по нажатию на категорию ( муж. женс )
-    func dismissPickerView(her: UITextField) {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneBtn))
-        toolBar.setItems([button], animated: true)
-        toolBar.isUserInteractionEnabled = true
-        her.inputAccessoryView = toolBar
-    }
-
-    @objc func doneBtn() {
-        self.endEditing(true)
+        textField.inputView = myPickerView
     }
 }

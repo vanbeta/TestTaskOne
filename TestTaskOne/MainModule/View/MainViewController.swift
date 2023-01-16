@@ -27,6 +27,12 @@ class MainViewController: UIViewController {
         setTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.getProfiles()
+        tableView.reloadData()
+    }
+    
     func setingsNavigationBar() {
         let btnEdit = UIBarButtonItem(title: "Редактировать", style: .plain, target: self, action: #selector(editBtn))
         navigationItem.title = "Просмотр"

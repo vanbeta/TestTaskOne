@@ -31,6 +31,7 @@ class EditViewController: UIViewController {
         let btnEdit = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveBtn))
         navigationItem.title = "Редактировать"
         navigationItem.rightBarButtonItem = btnEdit
+//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: nil)
     }
     
     func setTableView() {
@@ -44,11 +45,9 @@ class EditViewController: UIViewController {
     
     @objc
     func saveBtn(){
-        print("save")
+        presenter.saveBtnPressed()
     }
 }
-// Вью не может напрямую писать данные в Дату она должна дергать Прецентор и он должен каждый раз
-// писатть в дату а когда нажмем сохранить он проверить дату??
 
 extension EditViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,7 +67,6 @@ extension EditViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.textFieldChanged { [weak self] (str) in
             guard let profile = profile else { return }
-            print("her")
             self?.presenter.updateData(data: Profile(mainLabel: profile.mainLabel, datas: str))
         }
         

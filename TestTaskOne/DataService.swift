@@ -9,19 +9,30 @@ import Foundation
 
 protocol DataServiceProtocol: AnyObject {
     func getProfiles(compition: @escaping (Result<[Profile]?, Error>) -> ())
+    func saveProfiles(profiles: [Profile])
 }
 
 class DataService: DataServiceProtocol {
-    private let userDefaults = UserDefaults.standard
-
-    let data = [Profile(mainLabel: .firstName, datas: "Иван"),
-                Profile(mainLabel: .lastName, datas: "Иванов"),
-                Profile(mainLabel: .patronymic, datas: "Иванович"),
-                Profile(mainLabel: .date, datas: "66.66.6666"),
-                Profile(mainLabel: .sex, datas: "Мужской")]
-    
     func getProfiles(compition: @escaping (Result<[Profile]?, Error>) -> ()) {
-            compition(.success(data))
+        var data: [Profile] = []
+
+        data.append(Profile(mainLabel: .firstName,
+                            datas: UserDefaults.standard.string(forKey: "Имя") ?? "Нет данных"))
+        data.append(Profile(mainLabel: .lastName,
+                            datas: UserDefaults.standard.string(forKey: "Фамилия") ?? "Нет данных"))
+        data.append(Profile(mainLabel: .patronymic,
+                            datas: UserDefaults.standard.string(forKey: "Отчество") ?? "Нет данных"))
+        data.append(Profile(mainLabel: .date,
+                            datas: UserDefaults.standard.string(forKey: "Дата") ?? "Нет данных"))
+        data.append(Profile(mainLabel: .sex,
+                            datas: UserDefaults.standard.string(forKey: "Пол") ?? "Нет данных"))
+        
+        compition(.success(data))
     }
     
+    func saveProfiles(profiles: [Profile]) {
+        for p in profiles {
+            UserDefaults.standard.set(p.datas, forKey: p.mainLabel.rawValue)
+        }
+    }
 }
