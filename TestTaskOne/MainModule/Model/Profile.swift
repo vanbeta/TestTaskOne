@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Profile {
+struct Profile: Equatable {
     enum MainLabel: String {
         case firstName = "Имя"
         case lastName = "Фамилия"
@@ -17,4 +17,8 @@ struct Profile {
     }
     var mainLabel: MainLabel
     var datas: String
+    
+    static func == (lhs: Profile, rhs: Profile) -> Bool {
+        return lhs.mainLabel == rhs.mainLabel && lhs.datas == rhs.datas
+    }
 }

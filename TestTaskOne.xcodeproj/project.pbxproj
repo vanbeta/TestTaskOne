@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7D1D95EB295744D400F7D6D0 /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D95EA295744D400F7D6D0 /* EditTableViewCell.swift */; };
-		7D833D6D2975AB6500254C02 /* UiViewContollerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D833D6C2975AB6500254C02 /* UiViewContollerExtension.swift */; };
 		7DA3D66A2923E97000589459 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3D6692923E97000589459 /* MainTableViewCell.swift */; };
 		7DAFF9FB2955E74F00581705 /* EditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFF9FA2955E74F00581705 /* EditPresenter.swift */; };
 		7DAFF9FD2955E75D00581705 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFF9FC2955E75D00581705 /* EditViewController.swift */; };
@@ -27,7 +26,6 @@
 
 /* Begin PBXFileReference section */
 		7D1D95EA295744D400F7D6D0 /* EditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewCell.swift; sourceTree = "<group>"; };
-		7D833D6C2975AB6500254C02 /* UiViewContollerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiViewContollerExtension.swift; sourceTree = "<group>"; };
 		7DA3D6692923E97000589459 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		7DAFF9FA2955E74F00581705 /* EditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresenter.swift; sourceTree = "<group>"; };
 		7DAFF9FC2955E75D00581705 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 				7DB8ECDF2954E6B100EEB673 /* Main.storyboard */,
 				7DF3BE9F29227F3D00D19178 /* LaunchScreen.storyboard */,
 				7DF3BEA229227F3D00D19178 /* Info.plist */,
-				7D833D6C2975AB6500254C02 /* UiViewContollerExtension.swift */,
 			);
 			path = TestTaskOne;
 			sourceTree = "<group>";
@@ -244,7 +241,6 @@
 				7DF3BE9929227F3C00D19178 /* MainViewController.swift in Sources */,
 				7DF3BEB22922B26000D19178 /* Profile.swift in Sources */,
 				7DAFF9FB2955E74F00581705 /* EditPresenter.swift in Sources */,
-				7D833D6D2975AB6500254C02 /* UiViewContollerExtension.swift in Sources */,
 				7DF3BE9529227F3C00D19178 /* AppDelegate.swift in Sources */,
 				7DF3BEB02922B21100D19178 /* MainPresenter.swift in Sources */,
 				7DB8ECDE2954BCA100EEB673 /* ModuleBuilder.swift in Sources */,

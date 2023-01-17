@@ -10,19 +10,24 @@ import Foundation
 protocol EditViewProtocol: AnyObject {
     func succes()
     func showAlert(with title: String, and message: String)
+    func showRemoveAlert(with title: String, and message: String,  _ completion: @escaping (Bool) -> ())
+    func backViewController()
 }
 
 protocol EditPresenterProtocol: AnyObject {
     init(view: EditViewProtocol, dataService: DataServiceProtocol)
     var profiles: [Profile]? { get set }
+    var temporaryProfiles: [Profile]? { get set }
     func updateData(data: Profile)
     func saveBtnPressed()
+    func btnBackPressed()
 }
 
 class EditPresenter: EditPresenterProtocol {
     weak var view: EditViewProtocol?
     var data: DataServiceProtocol?
     var profiles: [Profile]?
+    var temporaryProfiles: [Profile]?
     
     required init(view: EditViewProtocol, dataService: DataServiceProtocol) {
         self.view = view
@@ -37,7 +42,8 @@ class EditPresenter: EditPresenterProtocol {
                 switch result {
                 case .success(let profiles):
                     self.profiles = profiles
-                    self.view?.succes()                    
+                    self.temporaryProfiles = profiles
+                    self.view?.succes()
                 case .failure(let error):
                     print(error)
                 }
@@ -46,8 +52,8 @@ class EditPresenter: EditPresenterProtocol {
     }
     
     func updateData(data: Profile) {
-        if let index = profiles?.firstIndex(where: ({$0.mainLabel == data.mainLabel})) {
-            profiles![index].datas = data.datas
+        if let index = temporaryProfiles?.firstIndex(where: ({$0.mainLabel == data.mainLabel})) {
+            temporaryProfiles![index].datas = data.datas
         }
     }
     
@@ -71,10 +77,25 @@ class EditPresenter: EditPresenterProtocol {
                     return
                 }
             case .patronymic, .date: break
-            default:
-                return
+            }
+            
+            guard let temporaryProfiles = temporaryProfiles else { return }
+            if profiles != temporaryProfiles {
+                data?.saveProfiles(profiles: temporaryProfiles)
             }
         }
-        data?.saveProfiles(profiles: profiles)
+    }
+    
+    func btnBackPressed() {
+        if profiles != temporaryProfiles {
+            view?.showRemoveAlert(with: "Внимание", and: "Были внесены измения") { [weak self] ok in
+                guard let self = self else { return }
+                if ok { self.saveBtnPressed() }
+                self.view?.backViewController()
+            }
+        } else {
+            self.view?.backViewController()
+        }
     }
 }
+

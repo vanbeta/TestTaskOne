@@ -15,6 +15,7 @@ class EditViewController: UIViewController {
     }()
 
     var presenter: EditPresenterProtocol!
+    var isEditingData: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,13 @@ class EditViewController: UIViewController {
         let btnEdit = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveBtn))
         navigationItem.title = "Редактировать"
         navigationItem.rightBarButtonItem = btnEdit
-//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: nil)
+        
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.setTitle("Назад", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        button.addTarget(self, action: #selector(btnBack), for: .touchUpInside)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     }
     
     func setTableView() {
@@ -40,6 +47,11 @@ class EditViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    }
+    
+    @objc
+    func btnBack() {
+        presenter.btnBackPressed()
     }
     
     @objc
@@ -93,4 +105,28 @@ extension EditViewController: EditViewProtocol {
     func succes() {
         tableView.reloadData()
     }
+    
+    func backViewController() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func showAlert(with title: String, and message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func showRemoveAlert(with title: String, and message: String,  _ completion: @escaping (Bool) -> ()) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "Пропустить", style: .default) { (action: UIAlertAction!) in
+            completion(false)
+        })
+        alertController.addAction(UIAlertAction(title: "Сохранить", style: .cancel) { (action: UIAlertAction!) in
+            completion(true)
+        })
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
+

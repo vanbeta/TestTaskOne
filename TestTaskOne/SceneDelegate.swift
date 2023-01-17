@@ -22,7 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         let mainVC = ModuleBuilder.createMain()
         let navBar = UINavigationController(rootViewController: mainVC)
+
         window?.rootViewController = navBar
+        
         window?.makeKeyAndVisible()
     }
 
