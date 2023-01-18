@@ -58,30 +58,36 @@ class EditPresenter: EditPresenterProtocol {
     }
     
     func saveBtnPressed() {
-        guard let profiles = profiles else { return }
-        for i in profiles {
+        guard let temporaryProfiles = temporaryProfiles else { return }
+        
+        for i in temporaryProfiles {
             switch i.mainLabel {
             case .firstName:
-                if i.datas.isEmpty {
+                if i.datas.isEmpty || i.datas == "Нет данных" {
                     view?.showAlert(with: "Ошибка", and: "Возможно поле имя или фамилия не заполненны")
                     return
                 }
             case .lastName:
-                if i.datas.isEmpty {
+                if i.datas.isEmpty || i.datas == "Нет данных" {
                     view?.showAlert(with: "Ошибка", and: "Возможно поле имя или фамилия не заполненны")
                     return
                 }
-            case .sex:
-                if i.datas.isEmpty || i.datas == "не выбрано" {
+            case .date:
+                if i.datas.isEmpty || i.datas == "не выбрано" || i.datas == "Нет данных" {
                     view?.showAlert(with: "Ошибка", and: "Возможно поле имя или фамилия или пол не заполненны")
                     return
                 }
-            case .patronymic, .date: break
+            case .sex:
+                if i.datas.isEmpty || i.datas == "не выбрано" || i.datas == "Нет данных" {
+                    view?.showAlert(with: "Ошибка", and: "Возможно поле имя или фамилия или пол не заполненны")
+                    return
+                }
+            case .patronymic: break
             }
             
-            guard let temporaryProfiles = temporaryProfiles else { return }
             if profiles != temporaryProfiles {
                 data?.saveProfiles(profiles: temporaryProfiles)
+                profiles = temporaryProfiles
             }
         }
     }
