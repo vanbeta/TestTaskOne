@@ -15,11 +15,19 @@ class EditTableViewCell: UITableViewCell {
     }()
 
     public let textField: UITextField = {
-        let myTextFiel = UITextField()
-        myTextFiel.translatesAutoresizingMaskIntoConstraints = false
-        myTextFiel.textAlignment = .right
-        myTextFiel.placeholder = "Введите данные"
-        return myTextFiel
+        let myTextField = UITextField()
+        myTextField.translatesAutoresizingMaskIntoConstraints = false
+        myTextField.textAlignment = .right
+        myTextField.placeholder = "Введите данные"
+        return myTextField
+    }()
+    
+    public let textFieldSpecial: CustomTextFieldForPickerView = {
+        let myTextField = CustomTextFieldForPickerView()
+        myTextField.translatesAutoresizingMaskIntoConstraints = false
+        myTextField.textAlignment = .right
+        myTextField.placeholder = "Введите данные"
+        return myTextField
     }()
 
     let datePicker: UIDatePicker = {
@@ -116,8 +124,8 @@ class EditTableViewCell: UITableViewCell {
             self.datePicker.setDate(date, animated: false)
         case .sex:
             nameLabel.text = "Пол"
-            createRightWidjet(widget: textField)
-            createPickerView(textField: textField)
+            createRightWidjet(widget: textFieldSpecial)
+            createPickerView(textField: textFieldSpecial)
             textField.text = profile.datas
         }
     }
@@ -172,9 +180,9 @@ extension EditTableViewCell: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        textField.text = pickerData[row]
+        textFieldSpecial.text = pickerData[row]
         self.endEditing(true)
-        textFieldDidChangeSelection(textField)
+        textFieldDidChangeSelection(textFieldSpecial)
     }
     
     func createPickerView(textField: UITextField) {
