@@ -23,6 +23,7 @@ class MainTableViewCell: UITableViewCell {
     }()
     
     let standartIndent: CGFloat = 10
+    let standartHieght: CGFloat = 50
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -40,7 +41,7 @@ class MainTableViewCell: UITableViewCell {
         
         nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: standartIndent).isActive = true
         
-        nameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: standartHieght).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
         
         nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
@@ -51,7 +52,7 @@ class MainTableViewCell: UITableViewCell {
         
         dataLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -standartIndent).isActive = true
         
-        dataLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        dataLabel.heightAnchor.constraint(equalToConstant: standartHieght).isActive = true
         dataLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
                 
         dataLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
@@ -60,19 +61,19 @@ class MainTableViewCell: UITableViewCell {
     func configure(profile: Profile) {
         switch profile.mainLabel {
         case .firstName:
-            nameLabel.text = "Имя"
+            nameLabel.text = profile.mainLabel.rawValue
             dataLabel.text = profile.datas
         case .lastName:
-            nameLabel.text = "Фамилия"
+            nameLabel.text = profile.mainLabel.rawValue
             dataLabel.text = profile.datas
         case .patronymic:
-            nameLabel.text = "Отчество"
+            nameLabel.text = profile.mainLabel.rawValue
             dataLabel.text = profile.datas
         case .date:
-            nameLabel.text = "Дата рождения"
+            nameLabel.text = profile.mainLabel.rawValue
             dataLabel.text = profile.datas
         case .sex:
-            nameLabel.text = "Пол"
+            nameLabel.text = profile.mainLabel.rawValue
             dataLabel.text = profile.datas
         }
     }

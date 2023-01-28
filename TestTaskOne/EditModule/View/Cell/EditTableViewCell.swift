@@ -19,6 +19,8 @@ class EditTableViewCell: UITableViewCell {
         myTextField.translatesAutoresizingMaskIntoConstraints = false
         myTextField.textAlignment = .right
         myTextField.placeholder = "Введите данные"
+        myTextField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: myTextField.frame.height))
+        myTextField.rightViewMode = .always
         return myTextField
     }()
     
@@ -27,6 +29,8 @@ class EditTableViewCell: UITableViewCell {
         myTextField.translatesAutoresizingMaskIntoConstraints = false
         myTextField.textAlignment = .right
         myTextField.placeholder = "Введите данные"
+        myTextField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: myTextField.frame.height))
+        myTextField.rightViewMode = .always
         return myTextField
     }()
 
@@ -45,6 +49,8 @@ class EditTableViewCell: UITableViewCell {
         myTextView.textAlignment = .right
         myTextView.isScrollEnabled = false
         myTextView.font = UIFont.systemFont(ofSize: 17)
+        myTextView.text = "Placeholder"
+        myTextView.textColor = UIColor.lightGray
         return myTextView
     }()
     
@@ -131,6 +137,8 @@ class EditTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - UITextFieldDelegate
+
 extension EditTableViewCell: UITextFieldDelegate {
     func textFieldChanged(action: @escaping (String) -> Void) {
         self.textFieldChanged = action
@@ -140,6 +148,8 @@ extension EditTableViewCell: UITextFieldDelegate {
         textFieldChanged?(textField.text ?? "")
     }
 }
+
+// MARK: - UITextViewDelegate
 
 extension EditTableViewCell: UITextViewDelegate {
     func textChanged(action: @escaping (String) -> Void) {
@@ -164,6 +174,8 @@ extension EditTableViewCell: UITextViewDelegate {
         }
     }
 }
+
+// MARK: - UIPickerViewDelegate, UIPickerViewDataSource
 
 extension EditTableViewCell: UIPickerViewDelegate, UIPickerViewDataSource {
 

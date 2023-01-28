@@ -15,7 +15,7 @@ class EditViewController: UIViewController {
     }()
 
     var presenter: EditPresenterProtocol!
-    var isEditingData: Bool = false
+    private var isEditingData: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +60,8 @@ class EditViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
+
 extension EditViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.profiles?.count ?? 0
@@ -101,6 +103,8 @@ extension EditViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// MARK: - Extension
+
 extension EditViewController: EditViewProtocol {
     func succes() {
         tableView.reloadData()
@@ -108,25 +112,6 @@ extension EditViewController: EditViewProtocol {
     
     func backViewController() {
         self.navigationController?.popToRootViewController(animated: true)
-    }
-    
-    func showAlert(with title: String, and message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    func showRemoveAlert(with title: String, and message: String,  _ completion: @escaping (Bool) -> ()) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        alertController.addAction(UIAlertAction(title: "Пропустить", style: .default) { (action: UIAlertAction!) in
-            completion(false)
-        })
-        alertController.addAction(UIAlertAction(title: "Сохранить", style: .cancel) { (action: UIAlertAction!) in
-            completion(true)
-        })
-        self.present(alertController, animated: true, completion: nil)
     }
 }
 

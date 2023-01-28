@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D1D95EB295744D400F7D6D0 /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1D95EA295744D400F7D6D0 /* EditTableViewCell.swift */; };
 		7D833D6F297AF61F00254C02 /* CustomTextFieldForPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D833D6E297AF61E00254C02 /* CustomTextFieldForPickerView.swift */; };
+		7D8E9E75297CE4810078FE8D /* ViewCcontrollerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E9E74297CE4810078FE8D /* ViewCcontrollerExtension.swift */; };
 		7DA3D66A2923E97000589459 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3D6692923E97000589459 /* MainTableViewCell.swift */; };
 		7DAFF9FB2955E74F00581705 /* EditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFF9FA2955E74F00581705 /* EditPresenter.swift */; };
 		7DAFF9FD2955E75D00581705 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFF9FC2955E75D00581705 /* EditViewController.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		7D1D95EA295744D400F7D6D0 /* EditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewCell.swift; sourceTree = "<group>"; };
 		7D833D6E297AF61E00254C02 /* CustomTextFieldForPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldForPickerView.swift; sourceTree = "<group>"; };
+		7D8E9E74297CE4810078FE8D /* ViewCcontrollerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCcontrollerExtension.swift; sourceTree = "<group>"; };
 		7DA3D6692923E97000589459 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		7DAFF9FA2955E74F00581705 /* EditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresenter.swift; sourceTree = "<group>"; };
 		7DAFF9FC2955E75D00581705 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,22 @@
 				7D1D95EA295744D400F7D6D0 /* EditTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		7D8E9E72297CE31E0078FE8D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7DB8ECE12954F56800EEB673 /* DataService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7D8E9E73297CE42F0078FE8D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7D8E9E74297CE4810078FE8D /* ViewCcontrollerExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		7DA3D6682923E95400589459 /* Cell */ = {
@@ -105,7 +123,6 @@
 			children = (
 				7DF3BEAC2922B16700D19178 /* Presenter */,
 				7DF3BEAE2922B17A00D19178 /* View */,
-				7DF3BEAD2922B17000D19178 /* Model */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
@@ -132,8 +149,10 @@
 			children = (
 				7DAFF9F72955DFB500581705 /* EditModule */,
 				7DB8ECDC2954BC4000EEB673 /* MainModule */,
+				7DF3BEAD2922B17000D19178 /* Model */,
+				7D8E9E72297CE31E0078FE8D /* Services */,
+				7D8E9E73297CE42F0078FE8D /* Extensions */,
 				7DB8ECDD2954BCA100EEB673 /* ModuleBuilder.swift */,
-				7DB8ECE12954F56800EEB673 /* DataService.swift */,
 				7DF3BE9429227F3C00D19178 /* AppDelegate.swift */,
 				7DF3BE9629227F3C00D19178 /* SceneDelegate.swift */,
 				7DF3BE9D29227F3D00D19178 /* Assets.xcassets */,
@@ -245,6 +264,7 @@
 				7D833D6F297AF61F00254C02 /* CustomTextFieldForPickerView.swift in Sources */,
 				7DF3BEB22922B26000D19178 /* Profile.swift in Sources */,
 				7DAFF9FB2955E74F00581705 /* EditPresenter.swift in Sources */,
+				7D8E9E75297CE4810078FE8D /* ViewCcontrollerExtension.swift in Sources */,
 				7DF3BE9529227F3C00D19178 /* AppDelegate.swift in Sources */,
 				7DF3BEB02922B21100D19178 /* MainPresenter.swift in Sources */,
 				7DB8ECDE2954BCA100EEB673 /* ModuleBuilder.swift in Sources */,
