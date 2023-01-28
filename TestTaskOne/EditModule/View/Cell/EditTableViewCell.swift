@@ -49,8 +49,6 @@ class EditTableViewCell: UITableViewCell {
         myTextView.textAlignment = .right
         myTextView.isScrollEnabled = false
         myTextView.font = UIFont.systemFont(ofSize: 17)
-        myTextView.text = "Placeholder"
-        myTextView.textColor = UIColor.lightGray
         return myTextView
     }()
     
@@ -95,7 +93,7 @@ class EditTableViewCell: UITableViewCell {
         nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
         
-        nameLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 50).isActive = true
+        nameLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 42).isActive = true
     }
 
     func createRightWidjet(widget: UIView) {
@@ -116,6 +114,10 @@ class EditTableViewCell: UITableViewCell {
             nameLabel.text = "Фамилия"
             createRightWidjet(widget: textView)
             textView.text = profile.datas == "Нет данных" ? nil : profile.datas
+            if textView.text.isEmpty {
+                textView.text = "Введите данные"
+                textView.textColor = .systemGray3
+            }
         case .patronymic:
             nameLabel.text = "Отчество"
             createRightWidjet(widget: textField)
@@ -161,16 +163,16 @@ extension EditTableViewCell: UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        if textView.textColor == UIColor.systemGray3 {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = .black
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Введите данные"
-            textView.textColor = UIColor.lightGray
+            textView.textColor = .systemGray3
         }
     }
 }
