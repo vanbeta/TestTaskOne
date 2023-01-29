@@ -77,23 +77,8 @@ extension EditViewController: UITableViewDataSource, UITableViewDelegate {
         let profile = presenter?.profiles?[indexPath.row]
         
         cell.configure(profile: profile ?? Profile(mainLabel: .firstName, datas: "Error"))
-        
-        cell.textFieldChanged { [weak self] (str) in
-            guard let profile = profile else { return }
-            self?.presenter.updateData(data: Profile(mainLabel: profile.mainLabel, datas: str))
-        }
-        
-        cell.textChanged {[weak tableView] (str) in
-            tableView?.beginUpdates()
-            tableView?.endUpdates()
-            guard let profile = profile else { return }
-            self.presenter.updateData(data: Profile(mainLabel: profile.mainLabel, datas: str))
-        }
-        
-        cell.datePickerChanged { (str) in
-            guard let profile = profile else { return }
-            self.presenter.updateData(data: Profile(mainLabel: profile.mainLabel, datas: str))
-        }
+        cell.editTableViewCellProtocol = self
+        cell.iDCcell = indexPath.row
         
         return cell
     }
@@ -112,6 +97,16 @@ extension EditViewController: EditViewProtocol {
     
     func backViewController() {
         self.navigationController?.popToRootViewController(animated: true)
+    }
+}
+
+extension EditViewController: EditTableViewCellProtocol {
+    func didPressed(str: String, id: Int) {
+        let profile = presenter?.profiles?[id]
+        guard let profile = profile else { return }
+        self.presenter.updateData(data: Profile(mainLabel: profile.mainLabel, datas: str))
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 }
 

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol EditTableViewCellProtocol: AnyObject {
+    func didPressed(str: String, id: Int)
+}
+
 class EditTableViewCell: UITableViewCell {
     let nameLabel: UILabel = {
         let myNameLabel = UILabel()
@@ -52,11 +56,10 @@ class EditTableViewCell: UITableViewCell {
         return myTextView
     }()
     
-    let standartIndent: CGFloat = 10
+    weak var editTableViewCellProtocol: EditTableViewCellProtocol?
+    var iDCcell: Int = 0
     
-    var textViewChanged: ((String) -> Void)?
-    var textFieldChanged: ((String) -> Void)?
-    var datePickerChanged: ((String) -> Void)?
+    let standartIndent: CGFloat = 10
     
     let pickerData = ["мужской", "женский", "не выбрано"]
 
@@ -70,16 +73,12 @@ class EditTableViewCell: UITableViewCell {
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
     }
     
-    func datePickerChanged(action: @escaping (String) -> Void) {
-        self.datePickerChanged = action
-    }
-    
     @objc
     func dateChanged() {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         let date = formatter.string(from: datePicker.date)
-        datePickerChanged?(date)
+        editTableViewCellProtocol?.didPressed(str: date, id: iDCcell)
     }
     
     required init?(coder: NSCoder) {
@@ -142,24 +141,16 @@ class EditTableViewCell: UITableViewCell {
 // MARK: - UITextFieldDelegate
 
 extension EditTableViewCell: UITextFieldDelegate {
-    func textFieldChanged(action: @escaping (String) -> Void) {
-        self.textFieldChanged = action
-    }
-    
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        textFieldChanged?(textField.text ?? "")
+        editTableViewCellProtocol?.didPressed(str: textField.text ?? "", id: iDCcell)
     }
 }
 
 // MARK: - UITextViewDelegate
 
 extension EditTableViewCell: UITextViewDelegate {
-    func textChanged(action: @escaping (String) -> Void) {
-        self.textViewChanged = action
-    }
-    
     func textViewDidChange(_ textView: UITextView) {
-        textViewChanged?(textView.text)
+        editTableViewCellProtocol?.didPressed(str: textView.text ?? "", id: iDCcell)
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
