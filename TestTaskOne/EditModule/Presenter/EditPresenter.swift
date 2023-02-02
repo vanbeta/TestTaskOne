@@ -59,37 +59,53 @@ class EditPresenter: EditPresenterProtocol {
     
     func saveBtnPressed() {
         guard let temporaryProfiles = temporaryProfiles else { return }
+          
+        checkFields(temporaryProfiles: temporaryProfiles) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(_):
+                if profiles != temporaryProfiles {
+                    data?.saveProfiles(profiles: temporaryProfiles)
+                    profiles = temporaryProfiles
+                }
+            case .failure(let error):
+                self.view?.showAlert(with: "Ошибка", and: error.localizedDescription)
+        }
+        }
+    }
         
+    private func checkFields(temporaryProfiles: [Profile] ,complition: (Result<Bool, Error>) -> ()) {
+        var ok = true
         for i in temporaryProfiles {
             switch i.mainLabel {
             case .firstName:
                 if i.datas.isEmpty || i.datas == "Нет данных" {
-                    view?.showAlert(with: "Ошибка", and: "Возможно поле имя или фамилия не заполненны")
+                    complition(.failure(CheckError.firstNameEmpty))
+                    ok.toggle()
                     return
                 }
             case .lastName:
                 if i.datas.isEmpty || i.datas == "Нет данных" {
-                    view?.showAlert(with: "Ошибка", and: "Возможно поле имя или фамилия не заполненны")
+                    complition(.failure(CheckError.lastNameEmpty))
+                    ok.toggle()
                     return
                 }
             case .date:
                 if i.datas.isEmpty || i.datas == "не выбрано" || i.datas == "Нет данных" {
-                    view?.showAlert(with: "Ошибка", and: "Возможно поле имя или фамилия или пол не заполненны")
+                    complition(.failure(CheckError.dateEmpty))
+                    ok.toggle()
                     return
                 }
             case .sex:
                 if i.datas.isEmpty || i.datas == "не выбрано" || i.datas == "Нет данных" {
-                    view?.showAlert(with: "Ошибка", and: "Возможно поле имя или фамилия или пол не заполненны")
+                    complition(.failure(CheckError.sexEmpty))
+                    ok.toggle()
                     return
                 }
-            case .patronymic: break
-            }
-            
-            if profiles != temporaryProfiles {
-                data?.saveProfiles(profiles: temporaryProfiles)
-                profiles = temporaryProfiles
+            default: break
             }
         }
+        if ok { complition(.success(true)) }
     }
     
     func btnBackPressed() {

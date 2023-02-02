@@ -11,6 +11,7 @@
 		7D833D6F297AF61F00254C02 /* CustomTextFieldForPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D833D6E297AF61E00254C02 /* CustomTextFieldForPickerView.swift */; };
 		7D8E9E75297CE4810078FE8D /* ViewCcontrollerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E9E74297CE4810078FE8D /* ViewCcontrollerExtension.swift */; };
 		7DA3D66A2923E97000589459 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3D6692923E97000589459 /* MainTableViewCell.swift */; };
+		7DAC92D5298B17740003A37E /* СheckError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC92D4298B17740003A37E /* СheckError.swift */; };
 		7DAFF9FB2955E74F00581705 /* EditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFF9FA2955E74F00581705 /* EditPresenter.swift */; };
 		7DAFF9FD2955E75D00581705 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFF9FC2955E75D00581705 /* EditViewController.swift */; };
 		7DB8ECDE2954BCA100EEB673 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB8ECDD2954BCA100EEB673 /* ModuleBuilder.swift */; };
@@ -31,6 +32,7 @@
 		7D833D6E297AF61E00254C02 /* CustomTextFieldForPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldForPickerView.swift; sourceTree = "<group>"; };
 		7D8E9E74297CE4810078FE8D /* ViewCcontrollerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCcontrollerExtension.swift; sourceTree = "<group>"; };
 		7DA3D6692923E97000589459 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		7DAC92D4298B17740003A37E /* СheckError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СheckError.swift"; sourceTree = "<group>"; };
 		7DAFF9FA2955E74F00581705 /* EditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresenter.swift; sourceTree = "<group>"; };
 		7DAFF9FC2955E75D00581705 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		7DB8ECDD2954BCA100EEB673 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				7DB8ECE12954F56800EEB673 /* DataService.swift */,
+				7DAC92D4298B17740003A37E /* СheckError.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				7DF3BE9929227F3C00D19178 /* MainViewController.swift in Sources */,
 				7D833D6F297AF61F00254C02 /* CustomTextFieldForPickerView.swift in Sources */,
 				7DF3BEB22922B26000D19178 /* Profile.swift in Sources */,
+				7DAC92D5298B17740003A37E /* СheckError.swift in Sources */,
 				7DAFF9FB2955E74F00581705 /* EditPresenter.swift in Sources */,
 				7D8E9E75297CE4810078FE8D /* ViewCcontrollerExtension.swift in Sources */,
 				7DF3BE9529227F3C00D19178 /* AppDelegate.swift in Sources */,

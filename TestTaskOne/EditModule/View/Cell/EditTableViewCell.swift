@@ -133,7 +133,7 @@ class EditTableViewCell: UITableViewCell {
             nameLabel.text = "Пол"
             createRightWidjet(widget: textFieldSpecial)
             createPickerView(textField: textFieldSpecial)
-            textField.text = profile.datas
+            textFieldSpecial.text = profile.datas
         }
     }
 }
