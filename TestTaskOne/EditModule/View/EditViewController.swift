@@ -24,11 +24,11 @@ class EditViewController: UIViewController {
         tableView.delegate = self
         tableView.register(EditTableViewCell.self, forCellReuseIdentifier: "idEditCell")
         
-        setingsNavigationBar()
+        settingsNavigationBar()
         setTableView()
     }
     
-    func setingsNavigationBar() {
+    func settingsNavigationBar() {
         let btnEdit = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveBtn))
         navigationItem.title = "Редактировать"
         navigationItem.rightBarButtonItem = btnEdit
@@ -78,7 +78,7 @@ extension EditViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.configure(profile: profile ?? Profile(mainLabel: .firstName, datas: "Error"))
         cell.editTableViewCellProtocol = self
-        cell.iDCcell = indexPath.row
+        cell.iDCell = indexPath.row
         
         return cell
     }
@@ -91,7 +91,7 @@ extension EditViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - Extension
 
 extension EditViewController: EditViewProtocol {
-    func succes() {
+    func success() {
         tableView.reloadData()
     }
     

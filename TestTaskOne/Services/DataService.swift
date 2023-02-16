@@ -8,12 +8,12 @@
 import Foundation
 
 protocol DataServiceProtocol: AnyObject {
-    func getProfiles(compition: @escaping (Result<[Profile]?, Error>) -> ())
+    func getProfiles(completion: @escaping (Result<[Profile]?, Error>) -> ())
     func saveProfiles(profiles: [Profile])
 }
 
 class DataService: DataServiceProtocol {
-    func getProfiles(compition: @escaping (Result<[Profile]?, Error>) -> ()) {
+    func getProfiles(completion: @escaping (Result<[Profile]?, Error>) -> ()) {
         var data: [Profile] = []
         
         let noData = "Нет данных"
@@ -34,7 +34,7 @@ class DataService: DataServiceProtocol {
                             datas: UserDefaults.standard.string(forKey: Profile.MainLabel.sex.rawValue)
                             ?? noData))
         
-        compition(.success(data))
+        completion(.success(data))
     }
     
     func saveProfiles(profiles: [Profile]) {

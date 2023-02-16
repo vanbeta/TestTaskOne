@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol MainViewProtocol: AnyObject {
-    func succes()
+    func success()
 }
 
 protocol MainPresenterProtocol: AnyObject {
@@ -36,7 +36,7 @@ class MainPresenter: MainPresenterProtocol {
                 switch result {
                 case .success(let profiles):
                     self.profiles = profiles
-                    self.view?.succes()
+                    self.view?.success()
                 case .failure(let error):
                     print(error)
                 }

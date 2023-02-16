@@ -57,11 +57,11 @@ class EditTableViewCell: UITableViewCell {
     }()
     
     weak var editTableViewCellProtocol: EditTableViewCellProtocol?
-    var iDCcell: Int = 0
+    var iDCell: Int = 0
     
     let standartIndent: CGFloat = 10
     
-    let pickerData = ["мужской", "женский", "не выбрано"]
+    let pickerData = ["не выбрано", "мужской", "женский"]
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -78,7 +78,7 @@ class EditTableViewCell: UITableViewCell {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         let date = formatter.string(from: datePicker.date)
-        editTableViewCellProtocol?.didPressed(str: date, id: iDCcell)
+        editTableViewCellProtocol?.didPressed(str: date, id: iDCell)
     }
     
     required init?(coder: NSCoder) {
@@ -142,7 +142,7 @@ class EditTableViewCell: UITableViewCell {
 
 extension EditTableViewCell: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        editTableViewCellProtocol?.didPressed(str: textField.text ?? "", id: iDCcell)
+        editTableViewCellProtocol?.didPressed(str: textField.text ?? "", id: iDCell)
     }
 }
 
@@ -150,7 +150,7 @@ extension EditTableViewCell: UITextFieldDelegate {
 
 extension EditTableViewCell: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        editTableViewCellProtocol?.didPressed(str: textView.text ?? "", id: iDCcell)
+        editTableViewCellProtocol?.didPressed(str: textView.text ?? "", id: iDCell)
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol EditViewProtocol: AnyObject {
-    func succes()
+    func success()
     func showAlert(with title: String, and message: String)
     func showRemoveAlert(with title: String, and message: String,  _ completion: @escaping (Bool) -> ())
     func backViewController()
@@ -43,7 +43,7 @@ class EditPresenter: EditPresenterProtocol {
                 case .success(let profiles):
                     self.profiles = profiles
                     self.temporaryProfiles = profiles
-                    self.view?.succes()
+                    self.view?.success()
                 case .failure(let error):
                     print(error)
                 }
@@ -74,38 +74,38 @@ class EditPresenter: EditPresenterProtocol {
         }
     }
         
-    private func checkFields(temporaryProfiles: [Profile] ,complition: (Result<Bool, Error>) -> ()) {
+    private func checkFields(temporaryProfiles: [Profile], completion: (Result<Bool, Error>) -> ()) {
         var ok = true
         for i in temporaryProfiles {
             switch i.mainLabel {
             case .firstName:
                 if i.datas.isEmpty || i.datas == "Нет данных" {
-                    complition(.failure(CheckError.firstNameEmpty))
+                    completion(.failure(CheckError.firstNameEmpty))
                     ok.toggle()
                     return
                 }
             case .lastName:
                 if i.datas.isEmpty || i.datas == "Нет данных" {
-                    complition(.failure(CheckError.lastNameEmpty))
+                    completion(.failure(CheckError.lastNameEmpty))
                     ok.toggle()
                     return
                 }
             case .date:
                 if i.datas.isEmpty || i.datas == "не выбрано" || i.datas == "Нет данных" {
-                    complition(.failure(CheckError.dateEmpty))
+                    completion(.failure(CheckError.dateEmpty))
                     ok.toggle()
                     return
                 }
             case .sex:
                 if i.datas.isEmpty || i.datas == "не выбрано" || i.datas == "Нет данных" {
-                    complition(.failure(CheckError.sexEmpty))
+                    completion(.failure(CheckError.sexEmpty))
                     ok.toggle()
                     return
                 }
             default: break
             }
         }
-        if ok { complition(.success(true)) }
+        if ok { completion(.success(true)) }
     }
     
     func btnBackPressed() {

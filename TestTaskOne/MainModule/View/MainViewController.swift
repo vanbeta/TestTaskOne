@@ -23,7 +23,7 @@ class MainViewController: UIViewController {
         tableView.delegate = self
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "idCell")
         
-        setingsNavigationBar()
+        settingsNavigationBar()
         setTableView()
     }
     
@@ -33,7 +33,7 @@ class MainViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func setingsNavigationBar() {
+    func settingsNavigationBar() {
         let btnEdit = UIBarButtonItem(title: "Редактировать", style: .plain, target: self, action: #selector(editBtn))
         navigationItem.title = "Просмотр"
         navigationItem.rightBarButtonItem = btnEdit
@@ -68,7 +68,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "idCell") as! MainTableViewCell
-        
         cell.configure(profile: presenter?.profiles?[indexPath.row] ?? Profile(mainLabel: .firstName, datas: "Error"))
         return cell
     }
@@ -81,7 +80,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - Protocol
 
 extension MainViewController: MainViewProtocol {
-    func succes() {
+    func success() {
         tableView.reloadData()
     }
 }
