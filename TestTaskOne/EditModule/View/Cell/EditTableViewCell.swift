@@ -59,7 +59,7 @@ class EditTableViewCell: UITableViewCell {
     weak var editTableViewCellProtocol: EditTableViewCellProtocol?
     var iDCell: Int = 0
     
-    let standartIndent: CGFloat = 10
+    let standardIndent: CGFloat = 10
     
     let pickerData = ["не выбрано", "мужской", "женский"]
 
@@ -87,20 +87,25 @@ class EditTableViewCell: UITableViewCell {
     
     func createNameLabel() {
         contentView.addSubview(nameLabel)
-        nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: standartIndent).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
-        
-        nameLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 42).isActive = true
+        NSLayoutConstraint.activate([
+            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: standardIndent),
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45),
+            
+            nameLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 42)
+        ])
     }
 
     func createRightWidjet(widget: UIView) {
         contentView.addSubview(widget)
-        widget.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -standartIndent).isActive = true
-        widget.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        widget.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        widget.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
+        NSLayoutConstraint.activate([
+            widget.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -standardIndent),
+            widget.topAnchor.constraint(equalTo: contentView.topAnchor),
+            widget.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            widget.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45)
+        ])
+
     }
 
     func configure(profile: Profile) {
